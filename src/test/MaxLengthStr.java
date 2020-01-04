@@ -2,12 +2,13 @@ package test;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 
 public class MaxLengthStr {
 
     public static void main(String[] args) {
         String s = "12345678854634234565234343423";
-        int length = maxLength(s);
+        int length = getMaxLengthStar(s);
         System.out.println("args = " + length);
 
     }
@@ -27,4 +28,30 @@ public class MaxLengthStr {
 
         return ans;
     }
+
+    public static int getMaxLengthStar(String str){
+
+        int n = str.length();
+
+        int realLength = 0;
+
+        Map<Character,Integer> map = new HashMap();
+
+        for(int start = 0,end = 0;end < n;end++){
+
+            char tempChar = str.charAt(end);
+
+            if(map.containsKey(tempChar)){
+
+                start = Math.max(start,map.get(tempChar));
+
+            }
+
+            realLength = Math.max(realLength,end-start+1);
+
+            map.put(tempChar,end+1);
+        }
+        return realLength;
+    }
+
 }

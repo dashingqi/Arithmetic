@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。
@@ -6,7 +7,7 @@ import java.util.HashMap;
 public class SumOfTwo {
 
     public static void main(String[] args) {
-        int[] ints = sumOfTwoUseHashMap(new int[]{4, 6, 8, 2}, 10);
+        int[] ints = sumOfTwos(new int[]{8, 8, 55,7,6,2}, 10);
         System.out.println("ints = " + ints[0] + " ==== " + ints[1]);
     }
 
@@ -51,4 +52,29 @@ public class SumOfTwo {
         return res;
 
     }
+
+    public static int[] sumOfTwos(int[] nums,int target){
+
+        int[] res = new int[2];
+
+        Map<Integer,Integer> map = new HashMap();
+
+        for(int i=0;i<nums.length;i++){
+
+            int tempValue = target-nums[i];
+
+            if(map.containsKey(tempValue)){
+                res[0] = map.get(tempValue);
+                res[1] = i;
+                return res;
+            }
+
+            map.put(nums[i],i);
+        }
+
+        return res;
+
+
+    }
+
 }
