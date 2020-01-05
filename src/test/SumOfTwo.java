@@ -7,7 +7,7 @@ public class SumOfTwo {
 
     public static void main(String[] args) {
         int[] nums = new int[]{4, 5, 6, 7, 8, 1, 2, 3};
-        int[] ints = sumOfTwo(nums, 10);
+        int[] ints = sumOfTwos(nums, 10);
         System.out.println("ints = " + ints[0] + "======" + ints[1]);
     }
 
@@ -22,6 +22,21 @@ public class SumOfTwo {
                 break;
             }
             map.put(numS[i], i);
+        }
+        return res;
+    }
+
+    public static int[] sumOfTwos(int[] nums, int target) {
+        int res[] = new int[2];
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            int def = target - nums[i];
+            if (map.containsKey(def)) {
+                res[0] = map.get(def);
+                res[1] = i;
+                return res;
+            }
+            map.put(nums[i], i);
         }
         return res;
     }
